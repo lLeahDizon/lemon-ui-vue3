@@ -5,8 +5,8 @@
       <h1>Lemon UI</h1>
       <h2>一个基于 Vue 3 的 UI 框架</h2>
       <p class="actions">
-        <a>GitHub</a>
-        <a>开始</a>
+        <a href="https://github.com/lLeahDizon/lemon-ui-vue3">GitHub</a>
+        <router-link to="/doc">开始</router-link>
       </p>
     </div>
   </div>
