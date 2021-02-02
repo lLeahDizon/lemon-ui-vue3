@@ -2,7 +2,7 @@
   <div>
     <TopNav/>
     <div class="content">
-      <aside>
+      <aside v-if="collapsed">
         <h2>组件列表</h2>
         <ol>
           <li>
@@ -25,9 +25,14 @@
 </template>
 <script lang="ts">
   import TopNav from '../components/TopNav.vue';
+  import {inject, Ref} from 'vue';
 
   export default {
-    components: {TopNav}
+    components: {TopNav},
+    setup() {
+      const collapsed = inject<Ref<boolean>>('collapsed'); // get
+      return {collapsed};
+    }
   };
 </script>
 <style lang="scss" scoped>
