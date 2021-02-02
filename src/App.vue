@@ -8,7 +8,9 @@
   export default {
     name: 'App',
     setup() {
-      const collapsed = ref(false);
+      const width = document.documentElement.clientWidth;
+      console.log(width);
+      const collapsed = ref(width > 500);
       provide('collapsed', collapsed); // set
     }
   };
