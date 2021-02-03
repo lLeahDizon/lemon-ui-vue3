@@ -1,6 +1,11 @@
 <template>
   <div>
-    <Button @click="onClick" @focus="onClick" @mouseover="onClick">你好</Button>
+    <Button
+      @click="onClick"
+      @focus="onClick"
+      @mouseover="onClick"
+    >你好
+    </Button>
   </div>
 </template>
 <script lang="ts">
