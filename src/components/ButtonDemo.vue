@@ -13,6 +13,16 @@
     <Button>Normal Button</Button>
     <Button size="small">Small Button</Button>
   </div>
+  <div>
+    <Button theme="link" size="big">Big Button</Button>
+    <Button theme="link">Normal Button</Button>
+    <Button theme="link" size="small">Small Button</Button>
+  </div>
+  <div>
+    <Button theme="text" size="big">Big Button</Button>
+    <Button theme="text">Normal Button</Button>
+    <Button theme="text" size="small">Small Button</Button>
+  </div>
 </template>
 <script lang="ts">
   import Button from '../lib/Button.vue';
