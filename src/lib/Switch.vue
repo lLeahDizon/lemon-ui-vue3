@@ -1,5 +1,5 @@
 <template>
-  <button @click="toggle" :class="{checked: value}"><span></span></button>
+  <button class="lemon-switch" @click="toggle" :class="{'lemon-checked': value}"><span></span></button>
 </template>
 <script lang="ts">
   export default {
@@ -15,10 +15,10 @@
   };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   $h: 22px;
   $h2: $h - 4px;
-  button {
+  .lemon-switch {
     height: $h;
     width: $h*2;
     border: none;
@@ -37,7 +37,7 @@
       transition: all 250ms;
     }
 
-    &.checked {
+    &.lemon-checked {
       background: #1890ff;
 
       > span {
@@ -55,7 +55,7 @@
       }
     }
 
-    &.checked:active {
+    &.lemon-checked:active {
       > span {
         width: $h2 + 4px;
         margin-left: -4px;
