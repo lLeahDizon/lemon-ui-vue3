@@ -12,7 +12,7 @@
             <slot name="content"/>
           </main>
           <footer>
-            <Button @click="ok">OK</Button>
+            <Button level="main" @click="ok">OK</Button>
             <Button @click="cancel">Cancel</Button>
           </footer>
         </div>
