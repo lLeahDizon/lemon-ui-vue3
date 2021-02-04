@@ -3,10 +3,12 @@
     <div class="lemon-dialog-overlay" @click="onClickOverlay"></div>
     <div class="lemon-dialog-wrapper">
       <div class="lemon-dialog">
-        <header>标题<span @click="close" class="lemon-dialog-close"></span></header>
+        <header>
+          <slot name="title"/>
+          <span @click="close" class="lemon-dialog-close"></span>
+        </header>
         <main>
-          <p>第一行字</p>
-          <p>第二行字</p>
+          <slot name="content"/>
         </main>
         <footer>
           <Button @click="ok">OK</Button>
