@@ -43,9 +43,14 @@
   </div>
   <h1>示例4</h1>
   <div>
-    <Button disabled>禁用按钮</Button>
-    <Button theme="link" disabled>禁用链接按钮</Button>
-    <Button theme="text" disabled>禁用按钮</Button>
+    <Button disabled>disabled</Button>
+    <Button theme="link" disabled>disabled link</Button>
+    <Button theme="text" disabled>disabled text</Button>
+  </div>
+  <h1>示例5</h1>
+  <div style="display: flex;">
+    <Button loading>loading</Button>
+    <Button>loading complete</Button>
   </div>
 </template>
 <script lang="ts">
