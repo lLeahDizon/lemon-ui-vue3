@@ -9,6 +9,7 @@
       >
         {{ p.title }}
       </div>
+      <div class="lemon-tabs-nav-indicator"></div>
     </div>
     <div class="lemon-tabs-content">
       <component class="lemon-tabs-content-item" :is="current" :key="current.props.key"/>
@@ -58,6 +59,7 @@
       display: flex;
       color: $color;
       border-bottom: 1px solid $border-color;
+      position: relative;
 
       &-item {
         padding: 8px 0;
@@ -71,6 +73,16 @@
         &.selected {
           color: $blue;
         }
+      }
+
+      &-indicator {
+        content: '';
+        position: absolute;
+        height: 3px;
+        background-color: $blue;
+        left: 0;
+        bottom: -1px;
+        width: 100px;
       }
     }
 
