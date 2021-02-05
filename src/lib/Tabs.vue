@@ -1,6 +1,6 @@
 <template>
   <div class="lemon-tabs">
-    <div class="lemon-tabs-nav">
+    <div class="lemon-tabs-nav" ref="container">
       <div
         class="lemon-tabs-nav-item"
         :class="{selected: selected === p.key}"
@@ -19,7 +19,7 @@
 </template>
 <script lang="ts">
   import Tab from './Tab.vue';
-  import {computed, onMounted, ref} from 'vue';
+  import {computed, onMounted, onUpdated, ref} from 'vue';
 
   export default {
     props: {
@@ -30,12 +30,18 @@
     setup(props, context) {
       const navItems = ref<HTMLDivElement[]>([]);
       const indicator = ref<HTMLDivElement>(null);
-      onMounted(() => {
+      const container = ref<HTMLDivElement>(null);
+      const x = () => {
         const divs = navItems.value;
         const result = divs.filter(div => div.classList.contains('selected'))[0];
-        const {width} = result.getBoundingClientRect();
+        const {width, left: leftResult} = result.getBoundingClientRect();
         indicator.value.style.width = width + 'px';
-      });
+        const {left: leftContainer} = container.value.getBoundingClientRect();
+        const left = leftResult - leftContainer;
+        indicator.value.style.left = left + 'px';
+      };
+      onMounted(x);
+      onUpdated(x);
       const defaults = context.slots.default();
       defaults.forEach((tag) => {
         if (tag.type !== Tab) {
@@ -54,8 +60,16 @@
       const select = (key: string) => {
         context.emit('update:selected', key);
       };
-      return {defaults, tabProps, current, select, navItems, indicator};
-    }
+      return {
+        defaults,
+        tabProps,
+        current,
+        select,
+        navItems,
+        indicator,
+        container
+      };
+    },
   };
 </script>
 <style lang="scss">
@@ -91,6 +105,7 @@
         left: 0;
         bottom: -1px;
         width: 100px;
+        transition: all 250ms;
       }
     }
 
