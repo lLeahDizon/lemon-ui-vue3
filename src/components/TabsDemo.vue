@@ -17,7 +17,7 @@
       Tab,
     },
     setup() {
-      const x = ref('1');
+      const x = ref('2');
       return {x};
     }
   };

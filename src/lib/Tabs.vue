@@ -4,12 +4,13 @@
       <div
         class="lemon-tabs-nav-item"
         :class="{selected: selected === p.key}"
-        v-for="p in tabProps" :key="p.key"
+        v-for="(p, index) in tabProps" :key="p.key"
         @click="select(p.key)"
+        :ref="el => { if (el) navItems[index] = el }"
       >
         {{ p.title }}
       </div>
-      <div class="lemon-tabs-nav-indicator"></div>
+      <div class="lemon-tabs-nav-indicator" ref="indicator"></div>
     </div>
     <div class="lemon-tabs-content">
       <component class="lemon-tabs-content-item" :is="current" :key="current.props.key"/>
@@ -18,7 +19,7 @@
 </template>
 <script lang="ts">
   import Tab from './Tab.vue';
-  import {computed} from 'vue';
+  import {computed, onMounted, ref} from 'vue';
 
   export default {
     props: {
@@ -27,6 +28,14 @@
       }
     },
     setup(props, context) {
+      const navItems = ref<HTMLDivElement[]>([]);
+      const indicator = ref<HTMLDivElement>(null);
+      onMounted(() => {
+        const divs = navItems.value;
+        const result = divs.filter(div => div.classList.contains('selected'))[0];
+        const {width} = result.getBoundingClientRect();
+        indicator.value.style.width = width + 'px';
+      });
       const defaults = context.slots.default();
       defaults.forEach((tag) => {
         if (tag.type !== Tab) {
@@ -40,13 +49,12 @@
         return defaults.filter(tag => tag.props.key === props.selected)[0];
       });
       const tabProps: { key: string, title: string } = defaults.map((tag) => {
-        console.log(tag.props);
         return tag.props;
       });
       const select = (key: string) => {
         context.emit('update:selected', key);
       };
-      return {defaults, tabProps, current, select};
+      return {defaults, tabProps, current, select, navItems, indicator};
     }
   };
 </script>
