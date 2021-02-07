@@ -35,15 +35,16 @@
 </script>
 
 <style lang="scss" scoped>
+  $color: #2a71c1;
   .topnav {
-    color: white;
+    color: $color;
     display: flex;
     padding: 16px;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 10;
+    z-index: 20;
     justify-content: center;
     align-items: center;
 
