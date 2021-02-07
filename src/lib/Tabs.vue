@@ -19,7 +19,7 @@
 </template>
 <script lang="ts">
   import Tab from './Tab.vue';
-  import {computed, ref, watchEffect} from 'vue';
+  import {computed, onMounted, ref, watchEffect} from 'vue';
 
   export default {
     props: {
@@ -31,12 +31,14 @@
       const selectedItem = ref<HTMLDivElement>(null);
       const indicator = ref<HTMLDivElement>(null);
       const container = ref<HTMLDivElement>(null);
-      watchEffect(() => {
-        const {width, left: leftResult} = selectedItem.value.getBoundingClientRect();
-        indicator.value.style.width = width + 'px';
-        const {left: leftContainer} = container.value.getBoundingClientRect();
-        const left = leftResult - leftContainer;
-        indicator.value.style.left = left + 'px';
+      onMounted(() => {
+        watchEffect(() => {
+          const {width, left: leftResult} = selectedItem.value.getBoundingClientRect();
+          indicator.value.style.width = width + 'px';
+          const {left: leftContainer} = container.value.getBoundingClientRect();
+          const left = leftResult - leftContainer;
+          indicator.value.style.left = left + 'px';
+        });
       });
       const defaults = context.slots.default();
       defaults.forEach((tag) => {
