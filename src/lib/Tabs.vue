@@ -4,9 +4,9 @@
       <div
         class="lemon-tabs-nav-item"
         :class="{selected: selected === p.key}"
-        v-for="(p, index) in tabProps" :key="p.key"
+        v-for="p in tabProps" :key="p.key"
         @click="select(p.key)"
-        :ref="el => { if (el) navItems[index] = el }"
+        :ref="el => { if (p.key === selected) selectedItem = el }"
       >
         {{ p.title }}
       </div>
@@ -28,13 +28,11 @@
       }
     },
     setup(props, context) {
-      const navItems = ref<HTMLDivElement[]>([]);
+      const selectedItem = ref<HTMLDivElement>(null);
       const indicator = ref<HTMLDivElement>(null);
       const container = ref<HTMLDivElement>(null);
       const x = () => {
-        const divs = navItems.value;
-        const result = divs.filter(div => div.classList.contains('selected'))[0];
-        const {width, left: leftResult} = result.getBoundingClientRect();
+        const {width, left: leftResult} = selectedItem.value.getBoundingClientRect();
         indicator.value.style.width = width + 'px';
         const {left: leftContainer} = container.value.getBoundingClientRect();
         const left = leftResult - leftContainer;
@@ -65,7 +63,7 @@
         tabProps,
         current,
         select,
-        navItems,
+        selectedItem,
         indicator,
         container
       };
