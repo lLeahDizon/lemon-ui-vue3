@@ -40,6 +40,7 @@
 
   .topnavAndBanner {
     background: linear-gradient(145deg, rgba(175, 217, 255, 1) 0%, rgba(80, 156, 240, 1) 100%);
+    clip-path: ellipse(80% 60% at 50% 40%);
   }
 
   .features {
