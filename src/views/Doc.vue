@@ -65,7 +65,7 @@
     > .content {
       flex-grow: 1;
       padding-top: 60px;
-      padding-left: 156px;
+      padding-left: 236px;
       @media (max-width: 500px) {
         padding-left: 0;
       }
@@ -87,31 +87,57 @@
   }
 
   aside {
-    width: 150px;
+    width: 224px;
     position: fixed;
     top: 0;
     left: 0;
     padding: 70px 0 16px;
     height: 100%;
+    background: white;
     box-shadow: $box-shadow;
 
     > h2 {
       margin-bottom: 4px;
-      padding: 0 16px;
+      padding: 10px 26px 0;
     }
+
+    $color: #1890ff;
 
     > ol {
       > li {
         > a {
           display: block;
-          padding: 4px 16px;
+          padding: 14px 36px;
           text-decoration: none;
+
+          &:hover {
+            color: $color;
+          }
+        }
+
+        @keyframes router-link-change {
+          0% {
+            transform: rotateX(90deg)
+          }
+          100% {
+            transform: rotateX(0)
+          }
         }
 
         .router-link-active {
           background: #e6f7ff;
-          color: #1890ff;
-          border-right: 3px solid #1890ff;
+          color: $color;
+          position: relative;
+
+          &::after {
+            content: '';
+            border-right: 3px solid $color;
+            animation: .5s router-link-change;
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+          }
         }
       }
     }
