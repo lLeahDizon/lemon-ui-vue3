@@ -50,6 +50,7 @@
   };
 </script>
 <style lang="scss" scoped>
+  $box-shadow: 0 2px 8px #f0f1f2;
   .layout {
     display: flex;
     flex-direction: column;
@@ -58,7 +59,7 @@
     > .nav {
       flex-shrink: 0;
       background: white;
-      box-shadow: 0 2px 8px #f0f1f2;
+      box-shadow: $box-shadow;
     }
 
     > .content {
@@ -86,13 +87,13 @@
   }
 
   aside {
-    background: lightblue;
     width: 150px;
     position: fixed;
     top: 0;
     left: 0;
     padding: 70px 0 16px;
     height: 100%;
+    box-shadow: $box-shadow;
 
     > h2 {
       margin-bottom: 4px;
@@ -108,7 +109,9 @@
         }
 
         .router-link-active {
-          background: white;
+          background: #e6f7ff;
+          color: #1890ff;
+          border-right: 3px solid #1890ff;
         }
       }
     }
