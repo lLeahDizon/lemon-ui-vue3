@@ -58,7 +58,6 @@
     z-index: 20;
     justify-content: center;
     align-items: center;
-    background: white;
 
     > .logo {
       max-width: 6em;
