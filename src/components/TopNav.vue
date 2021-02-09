@@ -8,9 +8,20 @@
     <ul class="menu">
       <router-link to="/doc">文档</router-link>
     </ul>
-    <svg v-if="toggleMenuButtonVisible" class="toggleAside" @click="toggleMenu">
-      <use xlink:href="#icon-menu"></use>
-    </svg>
+    <span
+        v-if="toggleMenuButtonVisible"
+        class="toggleAside"
+        @click="toggleMenu"
+    >
+      <transition name="fade" mode="out-in">
+        <svg v-if="collapsed">
+          <use xlink:href="#icon-close"></use>
+        </svg>
+        <svg v-else>
+          <use xlink:href="#icon-menu"></use>
+        </svg>
+      </transition>
+    </span>
   </div>
 </template>
 
@@ -29,7 +40,7 @@
       const toggleMenu = () => {
         collapsed.value = !collapsed.value;
       };
-      return {toggleMenu};
+      return {collapsed, toggleMenu};
     }
   };
 </script>
@@ -47,6 +58,7 @@
     z-index: 20;
     justify-content: center;
     align-items: center;
+    background: white;
 
     > .logo {
       max-width: 6em;
@@ -76,6 +88,11 @@
       top: 50%;
       transform: translateY(-50%);
       display: none;
+
+      > svg {
+        width: 32px;
+        height: 32px;
+      }
     }
 
     @media (max-width: 500px) {
