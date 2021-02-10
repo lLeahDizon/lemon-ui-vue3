@@ -1,6 +1,6 @@
 <template>
   <button class="lemon-button" :class="classes" :disabled="disabled">
-    <span v-if="loading" class="lemon-loadingIndicator"></span>
+    <span v-if="loading" class="lemon-loadingIndicator"/>
     <slot/>
   </button>
 </template>

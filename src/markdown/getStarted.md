@@ -5,7 +5,7 @@
 然后在你的代码中写入下面的代码
 
 ```javascript
-import {Button, Tabs, Switch, Dialog} from "lemon-ui"
+import {Button, Tabs, Switch, Dialog} from "lemon-ht-ui"
 ```
 
 就可以使用组件了。
@@ -23,7 +23,7 @@ import {Button, Tabs, Switch, Dialog} from "lemon-ui"
   </div>
 </template>
 <script lang="js">
-  import {Button, Tabs, Switch, Dialog} from "lemon-ui"
+  import {Button, Tabs, Switch, Dialog} from "lemon-ht-ui"
 
   export default {
     components: {Button}

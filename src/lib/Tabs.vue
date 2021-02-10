@@ -2,15 +2,15 @@
   <div class="lemon-tabs">
     <div class="lemon-tabs-nav" ref="container">
       <div
-        class="lemon-tabs-nav-item"
-        :class="{selected: selected === p.key}"
-        v-for="p in tabProps" :key="p.key"
-        @click="select(p.key)"
-        :ref="el => { if (p.key === selected) selectedItem = el }"
+          class="lemon-tabs-nav-item"
+          :class="{selected: selected === p.key}"
+          v-for="p in tabProps" :key="p.key"
+          @click="select(p.key)"
+          :ref="el => { if (p.key === selected) selectedItem = el }"
       >
         {{ p.title }}
       </div>
-      <div class="lemon-tabs-nav-indicator" ref="indicator"></div>
+      <div class="lemon-tabs-nav-indicator" ref="indicator"/>
     </div>
     <div class="lemon-tabs-content">
       <component class="lemon-tabs-content-item" :is="current" :key="current.props.key"/>
@@ -32,13 +32,17 @@
       const indicator = ref<HTMLDivElement>(null);
       const container = ref<HTMLDivElement>(null);
       onMounted(() => {
-        watchEffect(() => {
-          const {width, left: leftResult} = selectedItem.value.getBoundingClientRect();
-          indicator.value.style.width = width + 'px';
-          const {left: leftContainer} = container.value.getBoundingClientRect();
-          const left = leftResult - leftContainer;
-          indicator.value.style.left = left + 'px';
-        });
+        watchEffect(
+            () => {
+              const {width, left: leftResult} = selectedItem.value.getBoundingClientRect();
+              indicator.value.style.width = width + 'px';
+              const {left: leftContainer} = container.value.getBoundingClientRect();
+              const left = leftResult - leftContainer;
+              indicator.value.style.left = left + 'px';
+            }, {
+              flush: 'post',
+            }
+        );
       });
       const defaults = context.slots.default();
       defaults.forEach((tag) => {
@@ -53,10 +57,10 @@
       const current = computed(() => {
         return defaults.filter(tag => tag.props.key === props.selected)[0];
       });
-      const tabProps: { key: string, title: string } = defaults.map((tag) => {
+      const tabProps = defaults.map((tag) => {
         return tag.props;
       });
-      const select = (key: string) => {
+      const select = (key) => {
         context.emit('update:selected', key);
       };
       return {
