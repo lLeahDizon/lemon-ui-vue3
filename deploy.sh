@@ -5,7 +5,7 @@ git init &&
 git add . &&
 git commit -m "update" &&
 git branch -M main &&
-git remote add origin git@github.com:lLeahDizon/lemon-ui-vue3-website.git &&
+git remote add origin git@gitee.com:LeahDizon/lemon-ui-vue3-website.git &&
 git push -f -u origin main &&
 cd -
-echo https://lleahdizon.github.io/lemon-ui-vue3-website/index.html
+echo https://leahdizon.gitee.io/lemon-ui-vue3-website/#/
